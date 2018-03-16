@@ -50,12 +50,25 @@ def render_grid(grid):
                     color = RED
                 if hasattr(square, 'party') and square.party == 1:
                     color = BLUE
+                local_x = xOffsetPixels + (sizeInPixels + spacingInPixels) * x
+                local_y = yOffsetPixels + (sizeInPixels + spacingInPixels) * y
                 pygame.draw.rect(screen, color, [
-                    xOffsetPixels + (sizeInPixels + spacingInPixels) * x,
-                    yOffsetPixels + (sizeInPixels + spacingInPixels) * y,
+                    local_x,
+                    local_y,
                     sizeInPixels,
                     sizeInPixels
                 ])
+
+                # Draw 4 lines around the square.
+                hs = spacingInPixels / 2
+                # HORZ
+                pygame.draw.line(screen, BLACK, [local_x - hs, local_y - hs], [local_x + sizeInPixels + hs, local_y - hs], 4)
+                pygame.draw.line(screen, BLACK, [local_x - hs, local_y + sizeInPixels + hs], [local_x + sizeInPixels + hs, local_y + sizeInPixels + hs], 4)
+
+                # VERT
+                pygame.draw.line(screen, BLACK, [local_x - hs, local_y - hs], [local_x - hs, local_y + sizeInPixels + hs], 4)
+                pygame.draw.line(screen, BLACK, [local_x + sizeInPixels - hs, local_y - hs], [local_x + sizeInPixels - hs, local_y + sizeInPixels + hs], 4)
+
 
         # Draw a rectangle outline
         #pygame.draw.rect(screen, BLACK, [75, 10, 50, 20], 2)

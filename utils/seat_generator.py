@@ -16,6 +16,7 @@ def stupid_seat_maker(grid):
         for x in range(seat_x, min(seat_x + width, grid.size_x)):
             for y in range(seat_y, min(seat_y + height, grid.size_y)):
                 square = grid.squares[x][y]
+                square.seat = seat
                 seat.squares.append(square)
         seat_x += width
         if seat_x >= grid.size_x:

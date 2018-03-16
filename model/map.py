@@ -3,6 +3,7 @@ class Square:
         party = 0
         x = 0
         y = 0
+        seat = -1
 
 
 class Seat:
