@@ -7,5 +7,6 @@ from model import map
 grid = map.Grid()
 preference_generator.fair_random_party(grid)
 #preference_generator.random_party(grid)
+#preference_generator.geo_party(grid)
 counter.count_squares(grid)
 grid_draw.render_grid(grid)

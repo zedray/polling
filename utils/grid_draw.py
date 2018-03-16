@@ -44,11 +44,11 @@ def render_grid(grid):
 
         for x in range(0, grid.size_x):
             for y in range(0, grid.size_y):
-                s = grid.squares[x][y]
+                square = grid.squares[x][y]
                 color = GREEN
-                if s.party == 0:
+                if hasattr(square, 'party') and square.party == 0:
                     color = RED
-                if s.party == 1:
+                if hasattr(square, 'party') and square.party == 1:
                     color = BLUE
                 pygame.draw.rect(screen, color, [
                     xOffsetPixels + (sizeInPixels + spacingInPixels) * x,
