@@ -24,5 +24,5 @@ def stupid_seat_maker(grid):
             seat_y += height
         grid.seats.append(seat)
 
-    for seat in grid.seats:
-        print 'Seat id:' + repr(seat.id) + ' has ' + repr(len(seat.squares)) + ' squares'
+    #for seat in grid.seats:
+    #    print 'Seat id:' + repr(seat.id) + ' has ' + repr(len(seat.squares)) + ' squares'

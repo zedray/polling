@@ -1,9 +1,31 @@
 class Square:
+
     def __init__(self):
-        party = 0
-        x = 0
-        y = 0
-        seat = -1
+        self.party = 0
+        self.x = 0
+        self.y = 0
+        self.seat = -1
+
+    def get_adjacent_squares(self, grid):
+        adjacent_squares = []
+        if self.x > 0:
+            adjacent_squares.append(grid.squares[self.x - 1][self.y])
+        if self.x < grid.size_x - 1:
+            adjacent_squares.append(grid.squares[self.x + 1][self.y])
+        if self.y > 0:
+            adjacent_squares.append(grid.squares[self.x][self.y + 1])
+        if self.y < grid.size_y - 1:
+            adjacent_squares.append(grid.squares[self.x][self.y - 1])
+        return adjacent_squares
+
+
+class SwapSquare:
+    def __init__(self):
+        self.square = -1
+        self.swap_square = -1
+
+    def majority(self):
+        return self.swap_square.seat.majority
 
 
 class Seat:

@@ -55,7 +55,7 @@ def __vote_for_random_seat(all_squares, party):
     square = random.choice(all_squares)
     square.party = party
     all_squares.remove(square)
-    print 'Square ' + repr(square.x) + ',' + repr(square.y) + ' is Voting for ' + repr(party)
+    #print 'Square ' + repr(square.x) + ',' + repr(square.y) + ' is Voting for ' + repr(party)
     return square
 
 

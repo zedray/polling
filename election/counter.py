@@ -29,8 +29,8 @@ def count_seats(grid):
         seat.majority = max(0, 2 * seat_results[winner] - len(seat.squares))
         results[winner] += 1
 
-        print 'Seat: ' + repr(seat.id) + ', votes:' + repr(seat_results[0]) + ' vs ' + repr(seat_results[1])\
-              + ' winner:' + repr(winner)
+        #print 'Seat: ' + repr(seat.id) + ', votes:' + repr(seat_results[0]) + ' vs ' + repr(seat_results[1])\
+        #      + ' winner:' + repr(winner)
 
     # Print the status.
     print 'Seat election results for ' + repr(grid.no_of_seats) + ' seats'
