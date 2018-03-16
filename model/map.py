@@ -8,9 +8,9 @@ class Square:
 class Grid:
     size_x = 10
     size_y = 10
+    no_of_parties = 2
 
     def __init__(self):
-
         self.total_size = self.size_x * self.size_y
         self.squares = [[0 for x in range(self.size_y)] for y in range(self.size_y)]
         for x in range(0, self.size_y):
