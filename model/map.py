@@ -10,6 +10,8 @@ class Seat:
     def __init__(self):
         self.squares = []
         self.id = -1
+        self.party = -1
+        self.majority = 0
 
 
 class Grid:
