@@ -3,8 +3,8 @@ import pygame
 
 def render_grid(grid):
     # Setup the space.
-    sizeInPixels = 50
-    spacingInPixels = 10
+    sizeInPixels = 20
+    spacingInPixels = 2
     xOffsetPixels = 50
     yOffsetPixels = 50
 

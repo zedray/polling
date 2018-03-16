@@ -6,8 +6,8 @@ class Square:
 
 
 class Grid:
-    size_x = 10
-    size_y = 10
+    size_x = 30
+    size_y = 30
     no_of_parties = 2
 
     def __init__(self):
