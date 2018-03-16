@@ -1,17 +1,14 @@
 # Import a library of functions called 'pygame'
-import pygame
+import pygame, utils
+
+from utils import preference_generator
+from model import map
 
 # Setup the space.
-sizeX = 10
-sizeY = 10
 sizeInPixels = 50
 spacingInPixels = 10
 xOffsetPixels = 50
 yOffsetPixels = 50
-totalSize = sizeX * sizeY
-
-# Print the status
-print 'Grid Size - x:' + repr(sizeX) + ' y:' + repr(sizeY) + '  Total:' + repr(totalSize)
 
 # Draw the map
 # Initialize the game engine
@@ -28,26 +25,16 @@ RED = (255, 0, 0)
 size = [800, 800]
 screen = pygame.display.set_mode(size)
 
-pygame.display.set_caption("Example code for the draw module")
+pygame.display.set_caption("Model results")
 
 # Loop until the user clicks the close button.
 done = False
 clock = pygame.time.Clock()
 
-class Square:
-    def __init__(self):
-        self.party = 0
-        self.x = 0
-        self.y = 0
 
+grid = map.Grid()
+utils.preference_generator.random_party(grid, 2)
 
-squares = [[0 for x in range(sizeX)] for y in range(sizeY)]
-for x in range(0, sizeX):
-    for y in range(0, sizeY):
-        square = Square()
-        square.x = x
-        square.y = y
-        squares[x][y]= square
 
 while not done:
 
@@ -69,12 +56,17 @@ while not done:
     # Draw a rectangle outline
     pygame.draw.rect(screen, BLACK, [75, 10, 50, 20], 2)
 
-    for x in range(0, sizeX):
-        for y in range(0, sizeY):
-            s = squares[x][y]
+    for x in range(0, grid.size_x):
+        for y in range(0, grid.size_y):
+            s = grid.squares[x][y]
             print 'Square - x:' + repr(s.x) + ' y:' + repr(s.y) + '  Party:' + repr(s.party)
 
-            pygame.draw.rect(screen, GREEN, [
+            color = GREEN
+            if s.party == 1:
+                color = RED
+            if s.party == 2:
+                color = BLUE
+            pygame.draw.rect(screen, color, [
                 xOffsetPixels + (sizeInPixels + spacingInPixels) * x,
                 yOffsetPixels + (sizeInPixels + spacingInPixels) * y,
                 sizeInPixels,
