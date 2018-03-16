@@ -5,10 +5,17 @@ class Square:
         y = 0
 
 
+class Seat:
+    def __init__(self):
+        self.squares = []
+        self.id = -1
+
+
 class Grid:
     size_x = 30
     size_y = 30
     no_of_parties = 2
+    no_of_seats = 30
 
     def __init__(self):
         self.total_size = self.size_x * self.size_y
@@ -19,6 +26,7 @@ class Grid:
                 square.x = x
                 square.y = y
                 self.squares[x][y] = square
+        self.seats = []
 
         # Print the status
         print 'Grid Size - x:' + repr(self.size_x) + ' y:' + repr(self.size_y) + '  Total:' + repr(self.total_size)
