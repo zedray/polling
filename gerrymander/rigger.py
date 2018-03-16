@@ -60,5 +60,10 @@ def rig(grid, party):
     # Swap squares between two different seats.
 
 def __add(seat, square):
-    seat.squares.append(seat)
+    if not isinstance(seat, map.Seat):
+        print ('Not Seat')
+    if not isinstance(square, map.Square):
+        print ('Not Square')
+    print repr(seat) + ' ' + repr(square)
+    seat.squares.append(square)
     square.seat = seat

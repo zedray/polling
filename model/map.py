@@ -13,9 +13,9 @@ class Square:
         if self.x < grid.size_x - 1:
             adjacent_squares.append(grid.squares[self.x + 1][self.y])
         if self.y > 0:
-            adjacent_squares.append(grid.squares[self.x][self.y + 1])
-        if self.y < grid.size_y - 1:
             adjacent_squares.append(grid.squares[self.x][self.y - 1])
+        if self.y < grid.size_y - 1:
+            adjacent_squares.append(grid.squares[self.x][self.y + 1])
         return adjacent_squares
 
 
