@@ -27,19 +27,16 @@ def count_seats(grid):
               + ' winner:' + repr(winner)
 
     # Print the status.
-    print 'Seat election results'
+    print 'Seat election results for ' + repr(grid.no_of_seats) + ' seats'
     for i in range(0, len(results)):
-        print 'Party: ' + repr(i) + ', Total:' + repr(results[i]) + ' votes, Share:' + repr(
+        print 'Party:' + repr(i) + '  Total Seats:' + repr(results[i]) + '  Share:' + repr(
             100 * results[i] / grid.no_of_seats) + '%'
 
 
 def __get_winer(results):
-    print results
     largest_party = -1
     largest_result = 0
     for i in range(0, len(results)):
-        print i
-        print results[i]
         if results[i] > largest_result:
             largest_party = i
             largest_result = results[i]
