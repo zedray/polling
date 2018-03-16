@@ -8,4 +8,4 @@ def count_squares(grid):
     # Print the status
     print 'Raw election results'
     for i in range(0, len(results)):
-        print 'Party ' + repr(i) + ' total:' + repr(results[i])
+        print 'Party: ' + repr(i) + ', Total:' + repr(results[i]) + ' votes, Share:' + repr(100 * results[i] / grid.total_size) + '%'
