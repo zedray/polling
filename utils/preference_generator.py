@@ -1,5 +1,4 @@
 import random
-from model import map
 
 
 def random_party(grid, no_of_parties):
