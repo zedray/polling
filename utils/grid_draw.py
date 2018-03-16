@@ -61,13 +61,43 @@ def render_grid(grid):
 
                 # Draw 4 lines around the square.
                 hs = spacingInPixels / 2
+
+                # Left
+                if x == 0 or square.seat != grid.squares[x - 1][y].seat:
+                    pygame.draw.line(screen, BLACK,
+                                     [local_x - hs, local_y - hs],
+                                     [local_x - hs, local_y + sizeInPixels + hs],
+                                     4)
+                # Right
+                if x == grid.size_x - 1 or square.seat != grid.squares[x + 1][y].seat:
+                    pygame.draw.line(screen, BLACK,
+                                     [local_x + sizeInPixels - hs, local_y - hs],
+                                     [local_x + sizeInPixels - hs, local_y + sizeInPixels + hs],
+                                     4)
+                # Up
+                if y == 0 or square.seat != grid.squares[x][y - 1].seat:
+                    pygame.draw.line(screen, BLACK,
+                                     [local_x - hs, local_y - hs],
+                                     [local_x + sizeInPixels + hs, local_y - hs],
+                                     4)
+                # Down
+                if y == grid.size_y - 1 or square.seat != grid.squares[x][y + 1].seat:
+                    pygame.draw.line(screen, BLACK,
+                                     [local_x - hs, local_y + sizeInPixels + hs],
+                                     [local_x + sizeInPixels + hs, local_y + sizeInPixels + hs],
+                                     4)
+
+
+
+
                 # HORZ
-                pygame.draw.line(screen, BLACK, [local_x - hs, local_y - hs], [local_x + sizeInPixels + hs, local_y - hs], 4)
-                pygame.draw.line(screen, BLACK, [local_x - hs, local_y + sizeInPixels + hs], [local_x + sizeInPixels + hs, local_y + sizeInPixels + hs], 4)
+                #pygame.draw.line(screen, BLACK, [local_x - hs, local_y - hs], [local_x + sizeInPixels + hs, local_y - hs], 4)
+                #pygame.draw.line(screen, BLACK, [local_x - hs, local_y + sizeInPixels + hs], [local_x + sizeInPixels + hs, local_y + sizeInPixels + hs], 4)
 
                 # VERT
-                pygame.draw.line(screen, BLACK, [local_x - hs, local_y - hs], [local_x - hs, local_y + sizeInPixels + hs], 4)
-                pygame.draw.line(screen, BLACK, [local_x + sizeInPixels - hs, local_y - hs], [local_x + sizeInPixels - hs, local_y + sizeInPixels + hs], 4)
+                #pygame.draw.line(screen, BLACK, [local_x - hs, local_y - hs], [local_x - hs, local_y + sizeInPixels + hs], 4)
+                #pygame.draw.line(screen, BLACK, [local_x + sizeInPixels - hs, local_y - hs], [local_x + sizeInPixels - hs, local_y + sizeInPixels + hs], 4)
+
 
 
         # Draw a rectangle outline
