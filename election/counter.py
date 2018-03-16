@@ -7,6 +7,40 @@ def count_squares(grid):
                 results[square.party] += 1
 
     # Print the status
-    print 'Raw election results'
+    print 'Raw election results for ' + repr(grid.total_size) + ' voters'
     for i in range(0, len(results)):
-        print 'Party: ' + repr(i) + ', Total:' + repr(results[i]) + ' votes, Share:' + repr(100 * results[i] / grid.total_size) + '%'
+        print 'Party:' + repr(i) + '  Total Votes:' + repr(results[i])\
+              + '  Vote Share:' + repr(100 * results[i] / grid.total_size) + '%'
+
+
+def count_seats(grid):
+    results = [0] * grid.no_of_parties
+    for seat in grid.seats:
+        seat_results = [0] * grid.no_of_parties
+        for square in seat.squares:
+            if hasattr(square, 'party'):
+                seat_results[square.party] += 1
+
+        winner = __get_winer(seat_results)
+        results[winner] += 1
+        print 'Seat: ' + repr(seat.id) + ', votes:' + repr(seat_results[0]) + ' vs ' + repr(seat_results[1])\
+              + ' winner:' + repr(winner)
+
+    # Print the status.
+    print 'Seat election results'
+    for i in range(0, len(results)):
+        print 'Party: ' + repr(i) + ', Total:' + repr(results[i]) + ' votes, Share:' + repr(
+            100 * results[i] / grid.no_of_seats) + '%'
+
+
+def __get_winer(results):
+    print results
+    largest_party = -1
+    largest_result = 0
+    for i in range(0, len(results)):
+        print i
+        print results[i]
+        if results[i] > largest_result:
+            largest_party = i
+            largest_result = results[i]
+    return largest_party

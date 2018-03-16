@@ -88,8 +88,6 @@ def render_grid(grid):
                                      4)
 
 
-
-
                 # HORZ
                 #pygame.draw.line(screen, BLACK, [local_x - hs, local_y - hs], [local_x + sizeInPixels + hs, local_y - hs], 4)
                 #pygame.draw.line(screen, BLACK, [local_x - hs, local_y + sizeInPixels + hs], [local_x + sizeInPixels + hs, local_y + sizeInPixels + hs], 4)
@@ -98,20 +96,6 @@ def render_grid(grid):
                 #pygame.draw.line(screen, BLACK, [local_x - hs, local_y - hs], [local_x - hs, local_y + sizeInPixels + hs], 4)
                 #pygame.draw.line(screen, BLACK, [local_x + sizeInPixels - hs, local_y - hs], [local_x + sizeInPixels - hs, local_y + sizeInPixels + hs], 4)
 
-
-
-        # Draw a rectangle outline
-        #pygame.draw.rect(screen, BLACK, [75, 10, 50, 20], 2)
-
-        # Draw on the screen a GREEN line from (0,0) to (50.75)
-        # 5 pixels wide.
-        #pygame.draw.line(screen, GREEN, [0, 0], [50, 30], 5)
-
-        # Draw a solid rectangle
-        #pygame.draw.rect(screen, GREEN, [150, 10, 50, 20])
-
-        # This draws a triangle using the polygon command
-        #pygame.draw.polygon(screen, BLACK, [[100, 100], [0, 200], [200, 200]], 5)
 
         # Go ahead and update the screen with what we've drawn.
         # This MUST happen after all the other drawing commands.

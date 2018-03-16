@@ -30,4 +30,4 @@ class Grid:
         self.seats = []
 
         # Print the status
-        print 'Grid Size - x:' + repr(self.size_x) + ' y:' + repr(self.size_y) + '  Total:' + repr(self.total_size)
+        print 'Grid Size:' + repr(self.size_x) + 'x' + repr(self.size_y) + '  Total:' + repr(self.total_size)
