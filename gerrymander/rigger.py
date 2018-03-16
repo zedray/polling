@@ -1,4 +1,3 @@
-
 # Rig the election in favour of the given party.
 def rig(grid, party):
 
