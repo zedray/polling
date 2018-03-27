@@ -4,7 +4,7 @@ import pygame
 def render_grid(grid):
     # Setup the space.
     sizeInPixels = 20
-    spacingInPixels = 2
+    spacingInPixels = 8
     xOffsetPixels = 50
     yOffsetPixels = 50
 
@@ -15,9 +15,15 @@ def render_grid(grid):
     # Define the colors we will use in RGB format
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
-    GREEN = (0, 255, 0)
-    BLUE = (0, 0, 255)
-    RED = (255, 0, 0)
+
+    UP = 120
+    GREEN = (UP, 255, UP)
+    BLUE = (UP, UP, 255)
+    RED = (255, UP, UP)
+
+    DARK_GREEN = (0, 255, 0)
+    DARK_BLUE = (0, 0, 255)
+    DARK_RED = (255, 0, 0)
 
     # Set the height and width of the screen
     size = [800, 800]
@@ -62,27 +68,33 @@ def render_grid(grid):
                 # Draw 4 lines around the square.
                 hs = spacingInPixels / 2
 
+                dark_color = DARK_GREEN
+                if square.seat.party == 0:
+                    dark_color = DARK_RED
+                if square.seat.party == 1:
+                    dark_color = DARK_BLUE
+
                 # Left
                 if x == 0 or square.seat != grid.squares[x - 1][y].seat:
-                    pygame.draw.line(screen, BLACK,
+                    pygame.draw.line(screen, dark_color,
                                      [local_x - hs, local_y - hs],
                                      [local_x - hs, local_y + sizeInPixels + hs],
                                      4)
                 # Right
                 if x == grid.size_x - 1 or square.seat != grid.squares[x + 1][y].seat:
-                    pygame.draw.line(screen, BLACK,
+                    pygame.draw.line(screen, dark_color,
                                      [local_x + sizeInPixels - hs, local_y - hs],
                                      [local_x + sizeInPixels - hs, local_y + sizeInPixels + hs],
                                      4)
                 # Up
                 if y == 0 or square.seat != grid.squares[x][y - 1].seat:
-                    pygame.draw.line(screen, BLACK,
+                    pygame.draw.line(screen, dark_color,
                                      [local_x - hs, local_y - hs],
                                      [local_x + sizeInPixels + hs, local_y - hs],
                                      4)
                 # Down
                 if y == grid.size_y - 1 or square.seat != grid.squares[x][y + 1].seat:
-                    pygame.draw.line(screen, BLACK,
+                    pygame.draw.line(screen, dark_color,
                                      [local_x - hs, local_y + sizeInPixels + hs],
                                      [local_x + sizeInPixels + hs, local_y + sizeInPixels + hs],
                                      4)
