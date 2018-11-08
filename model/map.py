@@ -41,6 +41,8 @@ class Grid:
     size_y = 30
     no_of_parties = 2
     no_of_seats = 30
+    result_left = ['Create Grid']
+    result_right = ['-']
 
     def __init__(self):
         self.total_size = self.size_x * self.size_y

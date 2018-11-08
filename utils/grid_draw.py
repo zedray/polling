@@ -1,4 +1,5 @@
-import pygame, os
+import pygame, sys, os
+from pygame.locals import *
 
 
 def print_array(start_x, start_y, game_font, screen, text_array):
@@ -41,14 +42,6 @@ def render_grid(grid):
     pygame.font.init()
     game_font = pygame.font.Font(os.path.join("fonts", 'Roboto-Black.ttf'), 15)
 
-    result_left = ['Raw election results for 900 voters',
-                   'Party:0  Votes:450  Vote Share:50%',
-                   'Party:1  Votes:450  Vote Share:50%'
-                   ]
-    result_right = ['Seat election results for 30 seats',
-                    'Party:0  Seats:12  Share:40%  Majority:0',
-                    'Party:1  Seats:18  Share:60%  Majority:6']
-
     # Loop until the user clicks the close button.
     done = False
     clock = pygame.time.Clock()
@@ -62,6 +55,9 @@ def render_grid(grid):
         for event in pygame.event.get():  # User did something
             if event.type == pygame.QUIT:  # If user clicked close
                 done = True  # Flag that we are done so we exit this loop
+                pygame.quit()
+            if event.type == KEYDOWN:
+                done = True
 
         # Clear the screen and set the screen background
         screen.fill(WHITE)
@@ -119,12 +115,12 @@ def render_grid(grid):
 
         # Draw text.
         bottom = grid.size_y * (sizeInPixels + spacingInPixels)
-        print_array(xOffsetPixels, yOffsetPixels + bottom, game_font, screen, result_left)
-        print_array(xOffsetPixels + 400, yOffsetPixels + bottom, game_font, screen, result_right)
+        print_array(xOffsetPixels, yOffsetPixels + bottom, game_font, screen, grid.result_left)
+        print_array(xOffsetPixels + 400, yOffsetPixels + bottom, game_font, screen, grid.result_right)
 
         # Go ahead and update the screen with what we've drawn.
         # This MUST happen after all the other drawing commands.
         pygame.display.flip()
 
     # Be IDLE friendly
-    pygame.quit()
+    #pygame.quit()
