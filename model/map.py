@@ -41,8 +41,10 @@ class Grid:
     size_y = 30
     no_of_parties = 2
     no_of_seats = 30
-    result_left = ['-']
-    result_right = ['-']
+    result_left = []
+    result_right = []
+    rig_seat = 0
+    rig_swap_square = 0
 
     def __init__(self):
         self.total_size = self.size_x * self.size_y
@@ -56,4 +58,5 @@ class Grid:
         self.seats = []
 
         # Print the status
-        print 'Grid Size:' + repr(self.size_x) + 'x' + repr(self.size_y) + '  Total:' + repr(self.total_size)
+        self.result_left.append('Grid of size {0}x{1} votes:{2}'\
+            .format(repr(self.size_x), repr(self.size_y), repr(self.total_size)))

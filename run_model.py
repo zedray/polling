@@ -10,13 +10,16 @@ seat_generator.stupid_seat_maker(grid)
 grid_draw.render_grid(grid)
 
 counter.count_squares(grid)
-grid_draw.render_grid(grid)
-
 counter.count_seats(grid)
 grid_draw.render_grid(grid)
 
 for i in range(0, 10):
     rigger.rig(grid, 1)
+    counter.count_squares(grid)
+    counter.count_seats(grid)
+    grid_draw.render_grid(grid)
+
+    rigger.add(grid.rig_seat, grid.rig_swap_square)
     counter.count_squares(grid)
     counter.count_seats(grid)
     grid_draw.render_grid(grid)

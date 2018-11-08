@@ -51,7 +51,9 @@ def rig(grid, party):
           + ' to majority:' + repr(pick_square.swap_square.seat.majority)
 
     # Move square to this seat.
-    __add(pick_square.square.seat, pick_square.swap_square)
+    #add(pick_square.square.seat, pick_square.swap_square)
+    grid.rig_seat = pick_square.square.seat
+    grid.rig_swap_square = pick_square.swap_square
 
     # What we want:
     #  - Seats we don't like should win by a greater majority (push up).
@@ -59,11 +61,12 @@ def rig(grid, party):
 
     # Swap squares between two different seats.
 
-def __add(seat, square):
+
+def add(seat, square):
     if not isinstance(seat, map.Seat):
         print ('Not Seat')
     if not isinstance(square, map.Square):
         print ('Not Square')
-    print repr(seat) + ' ' + repr(square)
+    #print repr(seat) + ' ' + repr(square)
     seat.squares.append(square)
     square.seat = seat

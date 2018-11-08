@@ -2,6 +2,11 @@ import pygame, sys, os
 from pygame.locals import *
 
 
+def print_text(text_array):
+    for i in range(0, len(text_array)):
+        print text_array[i]
+
+
 def print_array(start_x, start_y, game_font, screen, text_array):
     font_line_spacing = 20
     for i in range(0, len(text_array)):
@@ -41,6 +46,8 @@ def render_grid(grid):
     pygame.display.set_caption("Model results")
     pygame.font.init()
     game_font = pygame.font.Font(os.path.join("fonts", 'Roboto-Black.ttf'), 15)
+    print_text(grid.result_left)
+    print_text(grid.result_right)
 
     # Loop until the user clicks the close button.
     done = False
@@ -68,7 +75,7 @@ def render_grid(grid):
                 square = grid.squares[x][y]
                 color = GREEN
                 if hasattr(square, 'party') and square.party == 0:
-                    color = RED
+                      color = RED
                 if hasattr(square, 'party') and square.party == 1:
                     color = BLUE
                 local_x = xOffsetPixels + (sizeInPixels + spacingInPixels) * x
@@ -88,29 +95,36 @@ def render_grid(grid):
                 if square.seat.party == 2:
                     dark_color = DARK_GREEN
 
+                force_draw = False
+                if square.seat == grid.rig_seat:
+                    dark_color = DARK_GREEN
+                if square == grid.rig_swap_square:
+                    dark_color = DARK_GREEN
+                    force_draw = True
+
                 topLeft = 1
                 bottomRight = 3
 
                 # Left
-                if x == 0 or square.seat != grid.squares[x - 1][y].seat:
+                if x == 0 or square.seat != grid.squares[x - 1][y].seat or force_draw:
                     pygame.draw.line(screen, dark_color,
                                      [local_x - lineThickness + topLeft, local_y - lineThickness],
                                      [local_x - lineThickness + topLeft, local_y + sizeInPixels + lineThickness - topLeft],
                                      lineThickness)
                 # Right
-                if x == grid.size_x - 1 or square.seat != grid.squares[x + 1][y].seat:
+                if x == grid.size_x - 1 or square.seat != grid.squares[x + 1][y].seat or force_draw:
                     pygame.draw.line(screen, dark_color,
                                      [local_x + sizeInPixels + lineThickness - bottomRight, local_y - lineThickness],
                                      [local_x + sizeInPixels + lineThickness - bottomRight, local_y + sizeInPixels + lineThickness - topLeft],
                                      lineThickness)
                 # Up
-                if y == 0 or square.seat != grid.squares[x][y - 1].seat:
+                if y == 0 or square.seat != grid.squares[x][y - 1].seat or force_draw:
                     pygame.draw.line(screen, dark_color,
                                      [local_x - lineThickness, local_y - lineThickness + topLeft],
                                      [local_x + sizeInPixels + lineThickness - topLeft, local_y - lineThickness + topLeft],
                                      lineThickness)
                 # Down
-                if y == grid.size_y - 1 or square.seat != grid.squares[x][y + 1].seat:
+                if y == grid.size_y - 1 or square.seat != grid.squares[x][y + 1].seat or force_draw  :
                     pygame.draw.line(screen, dark_color,
                                      [local_x - lineThickness, local_y + sizeInPixels + lineThickness - bottomRight],
                                      [local_x + sizeInPixels + lineThickness - topLeft, local_y + sizeInPixels + lineThickness - bottomRight],
