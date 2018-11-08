@@ -1,4 +1,11 @@
-import pygame
+import pygame, os
+
+
+def print_array(start_x, start_y, game_font, screen, text_array):
+    font_line_spacing = 20
+    for i in range(0, len(text_array)):
+        text_surface = game_font.render(text_array[i], True, (0, 0, 0))
+        screen.blit(text_surface, (start_x, start_y + (font_line_spacing * i)))
 
 
 def render_grid(grid):
@@ -27,10 +34,20 @@ def render_grid(grid):
     DARK_RED = (255, 0, 0)
 
     # Set the height and width of the screen
-    size = [1000, 900]
+    size = [950, 1000]
     screen = pygame.display.set_mode(size)
 
     pygame.display.set_caption("Model results")
+    pygame.font.init()
+    game_font = pygame.font.Font(os.path.join("fonts", 'Roboto-Black.ttf'), 15)
+
+    result_left = ['Raw election results for 900 voters',
+                   'Party:0  Votes:450  Vote Share:50%',
+                   'Party:1  Votes:450  Vote Share:50%'
+                   ]
+    result_right = ['Seat election results for 30 seats',
+                    'Party:0  Seats:12  Share:40%  Majority:0',
+                    'Party:1  Seats:18  Share:60%  Majority:6']
 
     # Loop until the user clicks the close button.
     done = False
@@ -100,15 +117,10 @@ def render_grid(grid):
                                      [local_x + sizeInPixels + lineThickness - topLeft, local_y + sizeInPixels + lineThickness - bottomRight],
                                      lineThickness)
 
-
-                # HORZ
-                #pygame.draw.line(screen, BLACK, [local_x - hs, local_y - hs], [local_x + sizeInPixels + hs, local_y - hs], 4)
-                #pygame.draw.line(screen, BLACK, [local_x - hs, local_y + sizeInPixels + hs], [local_x + sizeInPixels + hs, local_y + sizeInPixels + hs], 4)
-
-                # VERT
-                #pygame.draw.line(screen, BLACK, [local_x - hs, local_y - hs], [local_x - hs, local_y + sizeInPixels + hs], 4)
-                #pygame.draw.line(screen, BLACK, [local_x + sizeInPixels - hs, local_y - hs], [local_x + sizeInPixels - hs, local_y + sizeInPixels + hs], 4)
-
+        # Draw text.
+        bottom = grid.size_y * (sizeInPixels + spacingInPixels)
+        print_array(xOffsetPixels, yOffsetPixels + bottom, game_font, screen, result_left)
+        print_array(xOffsetPixels + 400, yOffsetPixels + bottom, game_font, screen, result_right)
 
         # Go ahead and update the screen with what we've drawn.
         # This MUST happen after all the other drawing commands.
