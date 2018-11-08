@@ -58,5 +58,5 @@ class Grid:
         self.seats = []
 
         # Print the status
-        self.result_left.append('Grid of size {0}x{1} votes:{2}'\
+        self.result_left.append('Grid of size {0}x{1} Voting population:{2}'\
             .format(repr(self.size_x), repr(self.size_y), repr(self.total_size)))

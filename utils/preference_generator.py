@@ -15,7 +15,7 @@ def fair_random_party(grid):
             __vote_for_random_seat(all_squares, party)
     while len(all_squares) > 0:
         __vote_for_random_seat(random.randint(0, grid.no_of_parties - 1))
-    grid.result_left.append('Create a voter population for {0} parties.'.format(grid.no_of_parties))
+    grid.result_left.append('Population can vote for {0} parties.'.format(grid.no_of_parties))
 
 
 def geo_party(grid):
