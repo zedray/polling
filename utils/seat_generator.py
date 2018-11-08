@@ -24,5 +24,6 @@ def stupid_seat_maker(grid):
             seat_y += height
         grid.seats.append(seat)
 
-    #for seat in grid.seats:
-    #    print 'Seat id:' + repr(seat.id) + ' has ' + repr(len(seat.squares)) + ' squares'
+    grid.result_left.append('To produce {0} seats, we need constituencies with about {1} voters each '
+                            '(lets draw {2}x{3} squares)'
+                            .format(repr(grid.no_of_seats), repr(seat_size), repr(width), repr(height)))

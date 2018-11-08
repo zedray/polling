@@ -7,7 +7,11 @@ from model import map
 grid = map.Grid()
 preference_generator.fair_random_party(grid)
 seat_generator.stupid_seat_maker(grid)
+grid_draw.render_grid(grid)
+
 counter.count_squares(grid)
+grid_draw.render_grid(grid)
+
 counter.count_seats(grid)
 grid_draw.render_grid(grid)
 

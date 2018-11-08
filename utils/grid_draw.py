@@ -56,6 +56,7 @@ def render_grid(grid):
             if event.type == pygame.QUIT:  # If user clicked close
                 done = True  # Flag that we are done so we exit this loop
                 pygame.quit()
+                return
             if event.type == KEYDOWN:
                 done = True
 
@@ -79,11 +80,13 @@ def render_grid(grid):
                     sizeInPixels
                 ])
 
-                dark_color = DARK_GREEN
+                dark_color = BLACK
                 if square.seat.party == 0:
                     dark_color = DARK_RED
                 if square.seat.party == 1:
                     dark_color = DARK_BLUE
+                if square.seat.party == 2:
+                    dark_color = DARK_GREEN
 
                 topLeft = 1
                 bottomRight = 3
