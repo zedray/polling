@@ -61,3 +61,6 @@ class Grid:
         # Print the status
         print 'Grid of size {0}x{1}'.format(repr(self.size_x), repr(self.size_y))
         print 'Voting population:{0}'.format(repr(self.total_size))
+
+    def majority(self, party):
+        return 2 * self.results[party] - self.no_of_seats
