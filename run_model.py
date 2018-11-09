@@ -17,6 +17,7 @@ grid_draw.render_grid(grid)
 
 while grid.majority(rig_for_party) < rig_for_majority:
     grid_draw.render_score(grid, 'ELECTION RIGGING IN PROGRESS')
+    grid_draw.render_grid(grid)
     rigger.rig(grid, rig_for_party)
     counter.count_squares(grid)
     counter.count_seats(grid)
