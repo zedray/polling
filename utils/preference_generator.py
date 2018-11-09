@@ -15,7 +15,7 @@ def fair_random_party(grid):
             __vote_for_random_seat(all_squares, party)
     while len(all_squares) > 0:
         __vote_for_random_seat(all_squares, random.randint(0, grid.no_of_parties - 1))
-    grid.result_left.append('Population can vote for {0} parties.'.format(grid.no_of_parties))
+    print 'Population can vote for {0} parties.'.format(grid.no_of_parties)
 
 
 def geo_party(grid):
@@ -48,7 +48,6 @@ def __get_all_squared(grid):
     all_squares = []
     for x in range(0, len(grid.squares)):
         for y in range(0, len(grid.squares[x])):
-            print 'Get square {0}x{1}   limits {2}x{3}'.format(x, y, len(grid.squares), len(grid.squares[x]))
             all_squares.append(grid.squares[x][y])
     return all_squares
 

@@ -20,7 +20,7 @@ def render_grid(grid):
     spacing_in_pixels = 4
     x_offset_pixels = 33
     y_offset_pixels = 20
-    line_thickness = 4
+    line_thickness = 3
 
     # Draw the map
     # Initialize the game engine
@@ -46,8 +46,6 @@ def render_grid(grid):
     pygame.display.set_caption("Model results")
     pygame.font.init()
     game_font = pygame.font.Font(os.path.join("fonts", 'Roboto-Black.ttf'), 15)
-    print_text(grid.result_left)
-    print_text(grid.result_right)
 
     # Loop until the user clicks the close button.
     done = False
@@ -72,9 +70,7 @@ def render_grid(grid):
 
         for x in range(0, grid.size_x):
             for y in range(0, grid.size_y):
-                print 'Square {0}x{1}'.format(x, y)
                 square = grid.squares[x][y]
-                print square
                 color = GREEN
                 if hasattr(square, 'party') and square.party == 0:
                       color = RED
@@ -131,11 +127,6 @@ def render_grid(grid):
                                      [local_x - line_thickness, local_y + size_in_pixels + line_thickness - bottom_right],
                                      [local_x + size_in_pixels + line_thickness - top_left, local_y + size_in_pixels + line_thickness - bottom_right],
                                      line_thickness)
-
-        # Draw text.
-        bottom = grid.size_y * (size_in_pixels + spacing_in_pixels)
-        print_array(x_offset_pixels, y_offset_pixels + bottom, game_font, screen, grid.result_left)
-        print_array(x_offset_pixels + 400, y_offset_pixels + bottom, game_font, screen, grid.result_right)
 
         # Go ahead and update the screen with what we've drawn.
         # This MUST happen after all the other drawing commands.

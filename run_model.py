@@ -13,7 +13,7 @@ counter.count_squares(grid)
 counter.count_seats(grid)
 grid_draw.render_grid(grid)
 
-for i in range(0, 5):
+for i in range(0, 2):
     rigger.rig(grid, 1)
     counter.count_squares(grid)
     counter.count_seats(grid)
