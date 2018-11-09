@@ -17,7 +17,8 @@ def count_squares(grid):
 
 
 def count_seats(grid):
-    results = [0] * grid.no_of_parties
+    grid.results = None
+    grid.results = [0] * grid.no_of_parties
     for seat in grid.seats:
         seat_results = [0] * grid.no_of_parties
         for square in seat.squares:
@@ -27,16 +28,16 @@ def count_seats(grid):
         winner = __get_winer(seat_results)
         seat.party = winner
         seat.majority = max(0, 2 * seat_results[winner] - len(seat.squares))
-        results[winner] += 1
+        grid.results[winner] += 1
 
         #print 'Seat: ' + repr(seat.id) + ', votes:' + repr(seat_results[0]) + ' vs ' + repr(seat_results[1])\
         #      + ' winner:' + repr(winner)
 
     # Print the status.
-    grid.result_right = ['Seat election results for ' + repr(grid.no_of_seats) + ' seats']
-    for i in range(0, len(results)):
-        grid.result_right.append('Party:' + repr(i) + '  Total Seats:' + repr(results[i]) + '  Share:' + repr(
-            100 * results[i] / grid.no_of_seats) + '%  Majority:' + repr(max(0, 2 * results[i] - grid.no_of_seats)))
+    print 'Seat election results for ' + repr(grid.no_of_seats) + ' seats'
+    for i in range(0, len(grid.results)):
+        print 'Party:' + repr(i) + '  Total Seats:' + repr(grid.results[i]) + '  Share:' + repr(
+            100 * grid.results[i] / grid.no_of_seats) + '%  Majority:' + repr(max(0, 2 * grid.results[i] - grid.no_of_seats))
 
 
 def __get_winer(results):

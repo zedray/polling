@@ -2,18 +2,6 @@ import pygame, sys, os
 from pygame.locals import *
 
 
-def print_text(text_array):
-    for i in range(0, len(text_array)):
-        print text_array[i]
-
-
-def print_array(start_x, start_y, game_font, screen, text_array):
-    font_line_spacing = 20
-    for i in range(0, len(text_array)):
-        text_surface = game_font.render(text_array[i], True, (0, 0, 0))
-        screen.blit(text_surface, (start_x, start_y + (font_line_spacing * i)))
-
-
 def render_grid(grid):
     # Setup the space.
     size_in_pixels = 20
@@ -59,7 +47,6 @@ def render_grid(grid):
 
         for event in pygame.event.get():  # User did something
             if event.type == pygame.QUIT:  # If user clicked close
-                done = True  # Flag that we are done so we exit this loop
                 pygame.quit()
                 return
             if event.type == KEYDOWN:
@@ -132,5 +119,64 @@ def render_grid(grid):
         # This MUST happen after all the other drawing commands.
         pygame.display.flip()
 
-    # Be IDLE friendly
-    #pygame.quit()
+
+def print_text(x, y, game_font, screen, text):
+    text_surface = game_font.render(text, True, (0, 0, 0))
+    screen.blit(text_surface, (x, y))
+
+
+def render_score(grid, status_text):
+    # Setup the space.
+    line_thickness = 4
+
+    # Draw the map
+    # Initialize the game engine
+    pygame.init()
+
+    # Define the colors we will use in RGB format
+    WHITE = (255, 255, 255)
+    BLACK = (0, 0, 0)
+    DARK_GREEN = (0, 255, 0)
+    DARK_BLUE = (0, 0, 255)
+    DARK_RED = (255, 0, 0)
+
+    # Set the height and width of the screen
+    size = [506, 253]
+    screen = pygame.display.set_mode(size)
+
+    pygame.display.set_caption("Model results")
+    pygame.font.init()
+    game_font = pygame.font.Font(os.path.join("fonts", 'Roboto-Black.ttf'), 30)
+
+    # Loop until the user clicks the close button.
+    done = False
+    clock = pygame.time.Clock()
+
+    while not done:
+
+        # This limits the while loop to a max of 10 times per second.
+        # Leave this out and we will use all CPU we can.
+        clock.tick(10)
+
+        for event in pygame.event.get():  # User did something
+            if event.type == pygame.QUIT:  # If user clicked close
+                pygame.quit()
+                return
+            if event.type == KEYDOWN:
+                done = True
+
+        # Clear the screen and set the screen background
+        screen.fill(WHITE)
+        print_text(16, 23, game_font, screen, status_text)
+        first_row = 85
+        print_text(10, first_row, game_font, screen, repr(grid.results[0]))
+        print_text(214, first_row, game_font, screen, 'Seats')
+        print_text(445, first_row, game_font, screen, repr(grid.results[1]))
+        second_row = 164
+        print_text(10, second_row, game_font, screen, repr(100 * grid.votes[0] / grid.voters) + '%')
+        print_text(210, second_row, game_font, screen, 'Votes')
+        print_text(435, second_row, game_font, screen, repr(100 * grid.votes[1] / grid.voters) + '%')
+
+        # Go ahead and update the screen with what we've drawn.
+        # This MUST happen after all the other drawing commands.
+        pygame.display.flip()

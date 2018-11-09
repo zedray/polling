@@ -13,9 +13,12 @@ def fair_random_party(grid):
     for party in range(0, grid.no_of_parties):
         for votes in range(0, grid.total_size / grid.no_of_parties):
             __vote_for_random_seat(all_squares, party)
+            grid.votes[party] += 1
     while len(all_squares) > 0:
-        __vote_for_random_seat(all_squares, random.randint(0, grid.no_of_parties - 1))
-    print 'Population can vote for {0} parties.'.format(grid.no_of_parties)
+        party = random.randint(0, grid.no_of_parties - 1)
+        __vote_for_random_seat(all_squares, party)
+        grid.votes[party] += 1
+    print 'Population votes 50:50 for {0} parties.'.format(grid.no_of_parties)
 
 
 def geo_party(grid):
@@ -32,6 +35,7 @@ def geo_party(grid):
         for votes in range(0, geo_bias_regions):
             remaining_votes[party] -= 1
             all_voted_squares.append(__vote_for_random_seat(all_squares, party))
+            grid.votes[party] += 1
 
     # Pick a voted on square.
     square = random.choice(all_voted_squares)

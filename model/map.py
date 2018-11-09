@@ -43,6 +43,9 @@ class Grid:
     no_of_seats = 18
     rig_seat = 0
     rig_swap_square = 0
+    results = None
+    votes = [0] * no_of_parties
+    voters = size_x * size_y
 
     def __init__(self):
         self.total_size = self.size_x * self.size_y
@@ -56,5 +59,5 @@ class Grid:
         self.seats = []
 
         # Print the status
-        print 'Grid of size {0}x{1} Voting population:{2}'\
-            .format(repr(self.size_x), repr(self.size_y), repr(self.total_size))
+        print 'Grid of size {0}x{1}'.format(repr(self.size_x), repr(self.size_y))
+        print 'Voting population:{0}'.format(repr(self.total_size))
