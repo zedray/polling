@@ -11,7 +11,7 @@ def random_party(grid):
 def fair_random_party(grid):
     all_squares = __get_all_squared(grid)
     for party in range(0, grid.no_of_parties):
-        for votes in range(0, grid.total_size / grid.no_of_parties):
+        for votes in range(0, grid.party_percentages[party] * grid.total_size / 100):
             __vote_for_random_seat(all_squares, party)
             grid.votes[party] += 1
     while len(all_squares) > 0:
