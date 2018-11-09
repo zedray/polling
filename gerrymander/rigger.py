@@ -5,6 +5,7 @@ from election import counter
 # Rig the election in favour of the given party.
 def rig(grid, party):
 
+    print '##### Lets try and rig the election... #####'
     # Score seats by vote majority.
     seats_we_want = []
     for seat in grid.seats:
@@ -12,9 +13,14 @@ def rig(grid, party):
             seats_we_want.append(seat)
 
     seats_we_want.sort(key=lambda seat: seat.majority, reverse=False)
+    print 'Seats of the other party that we want...'
+    for i in range(len(seats_we_want)):
+        print '  ID {0} Party {1} Majority {2}'.format(seats_we_want[i].id, seats_we_want[i].party, seats_we_want[i].majority)
 
     # Find our closest loosing election.
     closest_loosing_seat = seats_we_want[0]
+    print 'Closest loosing seat: ID {0} Party {1} Majority {2}'.format(seats_we_want[i].id, seats_we_want[i].party,
+                                                   seats_we_want[i].majority)
 
     # Use an ADDITIVE, as opposed to a REDUCTIVE strategy.
     # Score squares with boundaries connecting to other seats.

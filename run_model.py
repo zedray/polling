@@ -5,8 +5,9 @@ from gerrymander import rigger
 from model import map
 
 rig_for_party = 0
-rig_for_majority = 10
+rig_for_majority = 2
 
+grid_draw.render_help()
 grid = map.Grid()
 preference_generator.fair_random_party(grid)
 seat_generator.stupid_seat_maker(grid)

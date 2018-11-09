@@ -32,8 +32,6 @@ def render_grid(grid):
     screen = pygame.display.set_mode(size)
 
     pygame.display.set_caption("Model results")
-    pygame.font.init()
-    game_font = pygame.font.Font(os.path.join("fonts", 'Roboto-Black.ttf'), 15)
 
     # Loop until the user clicks the close button.
     done = False
@@ -140,6 +138,49 @@ def draw_bar(line_thickness, offset_x, offset_y, screen, score_a, score_b):
     offset_x + line_thickness + middle, offset_y + line_thickness, bar_width - middle - line_thickness * 2,
     bar_height - line_thickness * 2), 0)
 
+
+def render_help():
+    # Draw the map
+    # Initialize the game engine
+    pygame.init()
+
+    # Define the colors we will use in RGB format
+    WHITE = (255, 255, 255)
+
+    # Set the height and width of the screen
+    size = [506, 253]
+    screen = pygame.display.set_mode(size)
+
+    pygame.display.set_caption("Model results")
+    pygame.font.init()
+
+    help_image = pygame.image.load("images/help.png")
+    help_image_rect = help_image.get_rect()
+
+    # Loop until the user clicks the close button.
+    done = False
+    clock = pygame.time.Clock()
+
+    while not done:
+
+        # This limits the while loop to a max of 10 times per second.
+        # Leave this out and we will use all CPU we can.
+        clock.tick(10)
+
+        for event in pygame.event.get():  # User did something
+            if event.type == pygame.QUIT:  # If user clicked close
+                pygame.quit()
+                return
+            if event.type == KEYDOWN:
+                done = True
+
+        # Clear the screen and set the screen background
+        screen.fill(WHITE)
+        screen.blit(help_image, help_image_rect)
+
+        # Go ahead and update the screen with what we've drawn.
+        # This MUST happen after all the other drawing commands.
+        pygame.display.flip()
 
 def render_score(grid, status_text):
     # Setup the space.
