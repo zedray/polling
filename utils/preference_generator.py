@@ -14,7 +14,7 @@ def fair_random_party(grid):
         for votes in range(0, grid.total_size / grid.no_of_parties):
             __vote_for_random_seat(all_squares, party)
     while len(all_squares) > 0:
-        __vote_for_random_seat(random.randint(0, grid.no_of_parties - 1))
+        __vote_for_random_seat(all_squares, random.randint(0, grid.no_of_parties - 1))
     grid.result_left.append('Population can vote for {0} parties.'.format(grid.no_of_parties))
 
 
@@ -48,6 +48,7 @@ def __get_all_squared(grid):
     all_squares = []
     for x in range(0, len(grid.squares)):
         for y in range(0, len(grid.squares[x])):
+            print 'Get square {0}x{1}   limits {2}x{3}'.format(x, y, len(grid.squares), len(grid.squares[x]))
             all_squares.append(grid.squares[x][y])
     return all_squares
 
@@ -56,7 +57,6 @@ def __vote_for_random_seat(all_squares, party):
     square = random.choice(all_squares)
     square.party = party
     all_squares.remove(square)
-    #print 'Square ' + repr(square.x) + ',' + repr(square.y) + ' is Voting for ' + repr(party)
     return square
 
 

@@ -4,7 +4,7 @@ class Square:
         self.party = 0
         self.x = 0
         self.y = 0
-        self.seat = -1
+        self.seat = None
 
     def get_adjacent_squares(self, grid):
         adjacent_squares = []
@@ -37,19 +37,17 @@ class Seat:
 
 
 class Grid:
-    size_x = 30
-    size_y = 30
+    size_x = 18
+    size_y = 9
     no_of_parties = 2
-    no_of_seats = 30
-    result_left = []
-    result_right = []
+    no_of_seats = 18
     rig_seat = 0
     rig_swap_square = 0
 
     def __init__(self):
         self.total_size = self.size_x * self.size_y
-        self.squares = [[0 for x in range(self.size_y)] for y in range(self.size_y)]
-        for x in range(0, self.size_y):
+        self.squares = [[0] * self.size_y for i in range(self.size_x)]
+        for x in range(0, self.size_x):
             for y in range(0, self.size_y):
                 square = Square()
                 square.x = x
@@ -58,5 +56,5 @@ class Grid:
         self.seats = []
 
         # Print the status
-        self.result_left.append('Grid of size {0}x{1} Voting population:{2}'\
-            .format(repr(self.size_x), repr(self.size_y), repr(self.total_size)))
+        print 'Grid of size {0}x{1} Voting population:{2}'\
+            .format(repr(self.size_x), repr(self.size_y), repr(self.total_size))
