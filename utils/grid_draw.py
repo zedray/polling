@@ -17,10 +17,10 @@ def print_array(start_x, start_y, game_font, screen, text_array):
 def render_grid(grid):
     # Setup the space.
     size_in_pixels = 20
-    spacing_in_pixels = 4
-    x_offset_pixels = 33
-    y_offset_pixels = 20
-    line_thickness = 3
+    spacing_in_pixels = 8
+    x_offset_pixels = 5
+    y_offset_pixels = 5
+    line_thickness = 4
 
     # Draw the map
     # Initialize the game engine
