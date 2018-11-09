@@ -39,7 +39,8 @@ class Seat:
 class Grid:
     size_x = 18
     size_y = 9
-    no_of_parties = 2
+    party_percentages = [40, 60]
+    no_of_parties = len(party_percentages)
     no_of_seats = 18
     rig_seat = 0
     rig_swap_square = 0
