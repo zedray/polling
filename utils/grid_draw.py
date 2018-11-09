@@ -125,9 +125,25 @@ def print_text(x, y, game_font, screen, text):
     screen.blit(text_surface, (x, y))
 
 
+def draw_bar(line_thickness, offset_x, offset_y, screen, score_a, score_b):
+    BLACK = (0, 0, 0)
+    DARK_BLUE = (0, 0, 255)
+    DARK_RED = (255, 0, 0)
+    bar_width = 475
+    bar_height = 36
+    pygame.draw.rect(screen, BLACK, (offset_x, offset_y, bar_width, bar_height), 0)
+    total = score_a + score_b
+    middle = (score_a * bar_width) / total
+    pygame.draw.rect(screen, DARK_RED, (
+    offset_x + line_thickness, offset_y + line_thickness, middle - line_thickness, bar_height - line_thickness * 2), 0)
+    pygame.draw.rect(screen, DARK_BLUE, (
+    offset_x + line_thickness + middle, offset_y + line_thickness, bar_width - middle - line_thickness * 2,
+    bar_height - line_thickness * 2), 0)
+
+
 def render_score(grid, status_text):
     # Setup the space.
-    line_thickness = 4
+    line_thickness = 2
 
     # Draw the map
     # Initialize the game engine
@@ -135,10 +151,6 @@ def render_score(grid, status_text):
 
     # Define the colors we will use in RGB format
     WHITE = (255, 255, 255)
-    BLACK = (0, 0, 0)
-    DARK_GREEN = (0, 255, 0)
-    DARK_BLUE = (0, 0, 255)
-    DARK_RED = (255, 0, 0)
 
     # Set the height and width of the screen
     size = [506, 253]
@@ -167,6 +179,7 @@ def render_score(grid, status_text):
 
         # Clear the screen and set the screen background
         screen.fill(WHITE)
+
         print_text(16, 23, game_font, screen, status_text)
         first_row = 85
         print_text(10, first_row, game_font, screen, repr(grid.results[0]))
@@ -177,6 +190,8 @@ def render_score(grid, status_text):
         print_text(210, second_row, game_font, screen, 'Votes')
         print_text(435, second_row, game_font, screen, repr(100 * grid.votes[1] / grid.voters) + '%')
 
+        draw_bar(line_thickness, 12, 120, screen, grid.results[0], grid.results[1])
+        draw_bar(line_thickness, 12, 196, screen, 100 * grid.votes[0] / grid.voters, 100 * grid.votes[1] / grid.voters)
         # Go ahead and update the screen with what we've drawn.
         # This MUST happen after all the other drawing commands.
         pygame.display.flip()
