@@ -56,7 +56,7 @@ def rig(grid, party):
 
     # What we want:
     #  - Seats we don't like should win by a greater majority (push up).
-    #  - Seats we want show be losing by a smaller margin.
+    #  - Seats we have should be winning by a smaller margin.
 
     # Swap squares between two different seats.
 
